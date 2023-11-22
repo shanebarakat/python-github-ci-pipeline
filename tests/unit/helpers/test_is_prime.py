@@ -1,6 +1,6 @@
 """Unit tests for the function diffiehellman.helpers.is_prime"""
 
-from diffiehellman.helpers import is_prime
+from diffie_hellman_merkle.helpers import is_prime
 
 
 def test_is_prime():

@@ -1,6 +1,6 @@
 """Unit tests of the function diffiehellman.helpers.modulo_exp"""
 
-from diffiehellman.helpers import modulo_exp
+from diffie_hellman_merkle.helpers import modulo_exp
 
 
 def test_expected_output_modulo_exp():
