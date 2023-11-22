@@ -3,6 +3,8 @@ Example continuous-integration pipeline for a python project using GitHub action
 
 << **this repo is still under construction** >>
 
+run all unit tests: 
+
 ```bash
 make run_tests
 ```
