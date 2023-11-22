@@ -1,2 +1,5 @@
+mkdocs==1.5.3
+mkdocstrings-python==1.7.5
+mkdocs-material==9.4.10
 pytest==7.4.3
 pytest-cov==4.1.0
