@@ -1,5 +1,5 @@
-# python-github-ci-cd-pipeline
-Example [CI/CD]() pipeline for a python project using GitHub actions and GitHub branch protection.
+# python-github-ci-pipeline
+Example [Continuous Integration](https://en.wikipedia.org/wiki/Continuous_integration) pipeline for a python project using GitHub actions and GitHub branch protection.
 
 The project code consists of a toy implementation of the original [Diffie-Hellman-Merkle Key Exchange](https://en.wikipedia.org/wiki/Diffie–Hellman_key_exchange) algorithm (which is used to securely communicate a secret key across an insecure public communication channel).  
 
