@@ -16,6 +16,9 @@ integration_tests:
 end_to_end_tests:
 	python -m pytest --verbose tests/test_end_to_end.py --cov
 
+format:
+	ruff format .
+
 linter:
 	pylint diffie_hellman_merkle
 

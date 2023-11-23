@@ -8,9 +8,7 @@ def test_expected_output_modulo_exp():
     for pair in ((5, 9, 4), (2, 12, 7), (2, 50, 12)):
         func_output = modulo_exp(pair[0], pair[1], pair[2])
         expected_output: int = (pair[0] ** pair[1]) % pair[2]
-        assert (
-            func_output == expected_output
-        ), f"""
+        assert func_output == expected_output, f"""
         Case: ({pair[0]}^{pair[1]})mod{pair[2]}
         Expected result {expected_output} ...
         ...but received result modulo_exp({pair[0]}, {pair[1]}, {pair[2]}) = {func_output}"""
