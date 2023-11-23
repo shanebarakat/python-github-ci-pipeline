@@ -16,7 +16,7 @@ integration_tests:
 end_to_end_tests:
 	python -m pytest --verbose tests/test_end_to_end.py --cov
 
-format:
+auto_format_code:
 	ruff format .
 
 linter:

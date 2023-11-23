@@ -3,9 +3,13 @@ Example continuous-integration pipeline for a python project using GitHub action
 
 << **this repo is still under construction** >>
 
-```bash
-make run_tests
-```
+Implemented so far:
+
+| Task                        | Location                | How to Run This Task
+|-----------------------------|-------------------------|-----------------------------
+| Auto-format all code scripts (uses [Ruff](https://github.com/astral-sh/ruff)) | local github repo | run in terminal: <code>make auto_format_code</code>
+| Auto-format all code scripts (uses [Ruff](https://github.com/astral-sh/ruff)) | remote github repo      | runs automatically (using github action) whenever code is pushed to main branch
+| Run all unit tests (including test coverage) | local github repo | run in terminal: <code>python -m pytest --verbose tests/unit --cov</code>
 
 # Notes
 
