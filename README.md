@@ -15,6 +15,7 @@ Implemented so far:
 | Install production dependencies (required to use the package) | local github repo | run in terminal (from project root folder):<br> <code>make install_prod_dependencies</code>
 | Measure test coverage (uses [pytest-cov](https://github.com/pytest-dev/pytest-cov)) | local github repo | run in terminal (from project root folder):<br> <code>make test_coverage</code>
 | Run all tests (unit, integration, end-to-end, test coverage, linter, type-checking) | local github repo | run in terminal (from project root folder):<br> <code>make run_all_tests</code>
+| Run all tests (unit, integration, end-to-end) | remote github repo | main branch rejects merges not passing all tests 
 | Run all unit tests | local github repo | run in terminal (from project root folder):<br> <code>make unit_tests</code>
 | Run all integration tests | local github repo | run in terminal (from project root folder):<br> <code>make integration_tests</code>
 | Run all end-to-end tests | local github repo | run in terminal (from project root folder):<br> <code>make end_to_end_tests</code>
