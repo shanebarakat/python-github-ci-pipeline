@@ -17,7 +17,7 @@ integration_tests:
 	python -m pytest --verbose tests/integration
 
 end_to_end_tests:
-	python -m pytest --verbose tests/test_end_to_end.py
+	python -m pytest --verbose tests/end_to_end
 
 auto_format_code:
 	ruff format .
