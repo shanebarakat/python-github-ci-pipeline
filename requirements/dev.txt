@@ -1,3 +1,4 @@
+cryptography==41.0.5
 mkdocs==1.5.3
 mkdocstrings-python==1.7.5
 mkdocs-material==9.4.10
