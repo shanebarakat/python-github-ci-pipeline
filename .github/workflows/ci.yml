@@ -20,13 +20,21 @@ jobs:
           pip install ruff
           ruff --output-format=github .
         continue-on-error: true
-      #- name: Commit auto-formatted scripts
-      #  run: |
-      #    git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      #    git config --local user.name "github-actions[bot]"
-      #    git commit -a -m "style() Auto-formatted code"
-      #- name: Push changes
-      #  uses: ad-m/github-push-action@master
-      #  with:
-      #    github_token: ${{ secrets.GITHUB_TOKEN }}
-      #    branch: ${{ github.ref }}
+      - name: Commit auto-formatted scripts
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -a -m "style() Auto-formatted code"
+          continue-on-error: true
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+        continue-on-error: true
+      - name: Run Tests
+        run: |
+          pip install -r requirements/dev.txt
+          python -m pytest tests/unit
+          python -m pytest tests/integration
+          python -m pytest tests/test_end_to_end.py

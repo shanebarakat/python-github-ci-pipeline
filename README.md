@@ -32,3 +32,5 @@ Implemented so far:
 # Some Useful Resources 
 
 * https://github.com/marketplace/actions/github-push
+
+* https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
