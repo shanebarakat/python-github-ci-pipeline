@@ -5,7 +5,7 @@ An example [Continuous Integration (**CI**)](https://en.wikipedia.org/wiki/Conti
 
 The project code consists of a toy implementation of the original [Diffie-Hellman-Merkle Key Exchange](https://en.wikipedia.org/wiki/Diffie–Hellman_key_exchange) algorithm (which is used to securely communicate a secret key across an insecure public communication channel).  
 
-This **ci** pipeline works as follows:
+This **CI** pipeline works as follows (joe TODO: references in text below are stale after last refactor):
 
 * The pipeline is set up as a single GitHub action (I've labelled the action "**ci**" on the GitHub repo).
 

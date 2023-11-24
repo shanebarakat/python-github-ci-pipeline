@@ -1,0 +1,4 @@
+# packages required for building the project documentation #
+mkdocs==1.5.3
+mkdocstrings-python==1.7.5
+mkdocs-material==9.4.10
