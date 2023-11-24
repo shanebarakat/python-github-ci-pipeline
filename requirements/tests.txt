@@ -1,3 +1,4 @@
+# packages required to run all tests #
 cryptography==41.0.5
 mypy==1.7.0
 pylint==3.0.2
