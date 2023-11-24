@@ -26,7 +26,7 @@ class DiffieHellmanMerkle:
         self.value_to_share: int = helpers.modulo_exp(
             base=self.shared_base, exp=self.personal_secret, mod=self.shared_modulus
         )
-        self.shared_secret = None
+        self.shared_secret: int | None = None
 
     def generate_shared_secret(
         self,
