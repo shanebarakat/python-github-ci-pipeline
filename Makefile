@@ -1,7 +1,9 @@
-install_dev_dependencies: requirements/dev.txt
-	pip install -r requirements/dev.txt
+install_dev_dependencies:
+	pip install -r requirements/build_docs.txt
+	pip install -r requirements/clean_up.txt
+	pip install -r requirements/tests.txt
 
-install_prod_dependencies: requirements/dev.txt
+install_prod_dependencies:
 	pip install -r requirements/prod.txt
 
 run_all_tests:

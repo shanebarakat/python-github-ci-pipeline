@@ -1,9 +1,0 @@
-cryptography==41.0.5
-mkdocs==1.5.3
-mkdocstrings-python==1.7.5
-mkdocs-material==9.4.10
-mypy==1.7.0
-pylint==3.0.2
-pytest==7.4.3
-pytest-cov==4.1.0
-ruff==0.1.6
