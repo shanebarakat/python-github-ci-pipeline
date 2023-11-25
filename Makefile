@@ -29,3 +29,9 @@ linter:
 
 type_checks:
 	mypy diffie_hellman_merkle
+
+check_docstring_example_code:
+	python -m doctest diffie_hellman_merkle/helpers.py
+
+view_docs_local:
+	mkdocs serve
