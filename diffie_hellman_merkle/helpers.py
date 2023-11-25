@@ -1,4 +1,4 @@
-"""Internal (non-user-facing) helper functions
+"""Internal (non-user-facing) helper functions and classes
 
 - `modulo_exp(base: int, exp: int, mod: int) -> int` - Memory-efficient calculation of the modulo of an exponentiated number (e.g. the value of 123^456)mod7
 - `is_prime(n: int) -> bool` - Returns `True` if integer `n` is prime, otherwise `False`
