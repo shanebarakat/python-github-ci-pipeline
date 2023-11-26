@@ -56,3 +56,5 @@ Implemented so far:
 * https://github.com/marketplace/actions/github-push
 
 * https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+* https://www.math.stonybrook.edu/~sorin/311-2006/hw8.pdf

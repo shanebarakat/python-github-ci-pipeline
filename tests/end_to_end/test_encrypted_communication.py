@@ -15,8 +15,8 @@ def test_encrypted_communication():
     where the encryption key is communicated using Diffie-Hellman-Merkle
     key exchange
     """
-    public_shared_modulus: int = 7_069_067_389
-    public_shared_base: int = 247
+    public_shared_modulus: int = 855_467
+    public_shared_base: int = 101
     original_message: str = "the secret channel is working nicely"
     original_message_bytes: bytes = original_message.encode("utf-8")
 
