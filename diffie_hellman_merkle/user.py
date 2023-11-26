@@ -1,4 +1,4 @@
-"""User-facing functions and classes"""
+"""# User-facing functions and classes"""
 
 from diffie_hellman_merkle import helpers
 
@@ -23,10 +23,13 @@ class DiffieHellmanMerkle:
         shared_base: int,
         personal_secret: int,
     ):
-        """docstring TODO"""
         if not helpers.is_prime(shared_modulus):
             raise ValueError(
                 f"shared_modulus must be a prime number ({shared_modulus} is not prime)"
+            )
+        if not helpers.g_is_primitive_root_modulo_p(g=shared_base, p=shared_modulus):
+            raise ValueError(
+                f"`shared_base` must be a primitive root modulo `shared_modulus`. Received shared_base={shared_base}, shared_modulus={shared_modulus}"
             )
         self.shared_modulus = shared_modulus
         self.shared_base = shared_base
@@ -39,8 +42,16 @@ class DiffieHellmanMerkle:
     def generate_shared_secret(
         self,
         received_value_to_share: int,
-    ):
-        """docstring TODO"""
+    ) -> None:
+        """Computes a secret shared secret key
+
+        Args:
+            received_value_to_share (int): `value_to_share` received from the user that we wish to securely communicate with.
+
+        Returns:
+            None (does not return anything)
+        """
+
         self.shared_secret = helpers.modulo_exp(
             base=received_value_to_share,
             exp=self.personal_secret,

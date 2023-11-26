@@ -1,7 +1,8 @@
-"""Internal (non-user-facing) helper functions and classes
+"""# Internal (non-user-facing) helper functions and classes
 
-- `modulo_exp(base: int, exp: int, mod: int) -> int` - Memory-efficient calculation of the modulo of an exponentiated number (e.g. the value of 123^456)mod7
 - `is_prime(n: int) -> bool` - Returns `True` if integer `n` is prime, otherwise `False`
+- `is_primitive_root_modulo_p(g: int, p: int) -> bool` - Returns `True` if `g` is primitive root modulo `p`, otherwise `False`
+- `modulo_exp(base: int, exp: int, mod: int) -> int` - Memory-efficient calculation of the modulo of an exponentiated number (e.g. the value of 123^456)mod7
 """
 
 
@@ -70,3 +71,36 @@ def is_prime(n: int) -> bool:
         w = 6 - w
 
     return True
+
+
+def g_is_primitive_root_modulo_p(g: int, p: int) -> bool:
+    """Returns `True` if `g` is primitive root modulo prime number `p`, otherwise `False`
+
+    Examples:
+        >>> g_is_primitive_root_modulo_p(g=69, p=251)
+        False
+        >>> g_is_primitive_root_modulo_p(g=6, p=251)
+        True
+
+    Args:
+        g (int): The potential primitive root number
+        p (int): The modulo prime number
+
+    Returns:
+        (bool): `True` if `g` is primitive root modulo prime number `p`, otherwise `False`
+    """
+    for m in range(1, p - 1):
+        if (p - 1) % m == 0 and modulo_exp(base=g, exp=m, mod=p) == 1:
+            return False
+    return True
+
+    # alternative method: #
+    # if g <= 1 or g >= p:
+    #     return False
+    # mods_already_seen: set[int] = set()
+    # for e in range(1, p):
+    #     result: int = modulo_exp(base=g, exp=e, mod=p)
+    #     if result in mods_already_seen:
+    #         return False
+    #     mods_already_seen.add(result)
+    # return True
