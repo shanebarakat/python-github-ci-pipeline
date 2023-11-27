@@ -1,4 +1,4 @@
-"""End-to-end tests of the whole python package"""
+"""End-to-end tests of the whole system"""
 
 # standard lib imports #
 import base64

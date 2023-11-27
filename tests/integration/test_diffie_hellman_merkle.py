@@ -1,6 +1,9 @@
-"""Unit tests of the class diffiehellmann.user.DiffieHellmann"""
+"""Unit tests of the class diffie_hellman_merkle.user.DiffieHellmanMerkle"""
 
+# 3rd party imports #
 import pytest
+
+# project module imports #
 from diffie_hellman_merkle.user import DiffieHellmanMerkle
 
 

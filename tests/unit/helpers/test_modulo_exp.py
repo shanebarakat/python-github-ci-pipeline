@@ -1,4 +1,4 @@
-"""Unit tests of the function diffiehellman.helpers.modulo_exp"""
+"""Unit tests of the function diffie_hellman_merkle.helpers.modulo_exp"""
 
 import random
 from diffie_hellman_merkle.helpers import modulo_exp
