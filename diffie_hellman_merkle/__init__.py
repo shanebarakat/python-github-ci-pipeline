@@ -2,5 +2,5 @@
 [Diffie-Hellman-Merkle Key Exchange](https://en.wikipedia.org/wiki/Diffie-Hellman_key_exchange#Cryptographic_explanation) 
 algorithm. 
 
-This algorithm is used to generate a (secure) shared secret key through communication across a public (unsecure) network.
+This algorithm allows users to generate a (secure) shared secret key where all communication is across a public (unsecure) network.
 """
