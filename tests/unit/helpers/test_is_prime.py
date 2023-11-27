@@ -1,10 +1,10 @@
-"""Unit tests for the function diffiehellman.helpers.is_prime"""
+"""Unit tests for the function diffie_hellman_merkle.helpers.is_prime"""
 
 from diffie_hellman_merkle.helpers import is_prime
 
 
 def test_is_prime():
-    """Check output on some known cases"""
+    """Verify output on some known cases"""
     for case in (
         (2, True),
         (3, True),

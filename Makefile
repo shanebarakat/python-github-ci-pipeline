@@ -21,7 +21,7 @@ integration_tests:
 end_to_end_tests:
 	python -m pytest --verbose tests/end_to_end
 
-auto_format_code:
+auto_format_full_codebase:
 	ruff format .
 
 linter:
@@ -29,3 +29,12 @@ linter:
 
 type_checks:
 	mypy diffie_hellman_merkle
+
+check_docstring_example_code:
+	python -m doctest diffie_hellman_merkle/helpers.py
+
+view_docs_local:
+	mkdocs serve
+
+deploy_docs_to_github:
+	mkdocs gh-deploy --force --clean --verbose

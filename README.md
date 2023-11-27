@@ -53,6 +53,10 @@ Implemented so far:
 
 # Some Useful Resources 
 
-* https://github.com/marketplace/actions/github-push
+* https://www.wolframalpha.com (for finding large prime numbers, and finding/verifying primitive roots)
 
 * https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+* https://github.com/marketplace/actions/github-push
+
+* https://www.math.stonybrook.edu/~sorin/311-2006/hw8.pdf
