@@ -35,3 +35,6 @@ check_docstring_example_code:
 
 view_docs_local:
 	mkdocs serve
+
+deploy_docs_to_github:
+	mkdocs gh-deploy --force --clean --verbose
