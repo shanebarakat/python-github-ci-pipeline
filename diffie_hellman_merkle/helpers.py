@@ -1,7 +1,7 @@
 """# Internal (non-user-facing) helper functions and classes
 
 - `is_prime(n: int) -> bool` - Returns `True` if integer `n` is prime, otherwise `False`
-- `is_primitive_root_modulo_p(g: int, p: int) -> bool` - Returns `True` if `g` is primitive root modulo `p`, otherwise `False`
+- `g_is_primitive_root_modulo_p(g: int, p: int) -> bool` - Returns `True` if `g` is primitive root modulo prime number `p`, otherwise `False`
 - `modulo_exp(base: int, exp: int, mod: int) -> int` - Memory-efficient calculation of the modulo of an exponentiated number (e.g. the value of 123^456)mod7
 """
 
