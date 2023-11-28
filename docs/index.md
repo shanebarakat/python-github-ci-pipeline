@@ -1,4 +1,13 @@
 # Diffie-Hellman-Merkle Key Exchange
+```
+  .---.
+ /     \__________________.
+|  ( )  ________   _   _  |
+ \     /        |_| | | |_|
+  `---'             |_|
+                                
+
+```
 
 :::diffie_hellman_merkle
 
