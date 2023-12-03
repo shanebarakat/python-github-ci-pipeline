@@ -1,5 +1,6 @@
 # python-github-ci-pipeline
-An example [Continuous Integration (**CI**)](https://en.wikipedia.org/wiki/Continuous_integration) pipeline for a python project using GitHub actions and GitHub branch protection rules.
+
+This repo holds an example [Continuous Integration (**CI**)](https://en.wikipedia.org/wiki/Continuous_integration) pipeline for a python project, built using GitHub actions and GitHub branch protection rules. A tutorial blog post explaining this repo in detail can be found [here](./blog_post/tutorial.md).
 
 << **this repo is still under construction** >>
 
