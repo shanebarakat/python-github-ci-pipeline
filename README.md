@@ -1,12 +1,59 @@
 # python-github-ci-pipeline
 
-This repo holds an example [Continuous Integration (**CI**)](https://en.wikipedia.org/wiki/Continuous_integration) pipeline for a python project, built using GitHub actions and GitHub branch protection rules. A tutorial blog post explaining this repo in detail can be found [here](./blog_post/tutorial.md).
+This [GitHub](https://github.com) repo holds an example [Continuous Integration (CI)](https://en.wikipedia.org/wiki/Continuous_integration) pipeline for a python project, built using [GitHub actions](https://github.com/features/actions) and [GitHub branch protection rules](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches). A tutorial blog post explaining this repo in detail can be found [here](./blog_post/tutorial.md).
+
+The python project code in this repo is an implementation of the original 
+[Diffie-Hellman-Merkle Key Exchange](https://en.wikipedia.org/wiki/Diffie-Hellman_key_exchange#Cryptographic_explanation) 
+algorithm. You can see the project documentation [here](https://J-sephB-lt-n.github.io/python-github-ci-pipeline/) (this documentation is automatically built by the [CI](https://en.wikipedia.org/wiki/Continuous_integration) pipeline).
 
 << **this repo is still under construction** >>
 
+Parts of the [CI](https://en.wikipedia.org/wiki/Continuous_integration) pipeline can be run locally using the [Makefile](./Makefile) in terminal using the following commands: 
+
+```bash
+# install all of the python packages required in order to contribute to this python project #
+make install_dev_dependencies
+
+# install all of the python packages required in order to use this python project (i.e. as an end-user) #
+make install_prod_dependencies
+
+# run all tests (unit, integration, end-to-end, test coverage, linter, type-checking, docstring examples) #
+make run_all_tests
+
+# quantify test coverage #
+make test_coverage
+
+# run all unit tests # 
+make unit_tests
+
+# run all integration tests #
+make integration_tests
+
+# run all end-to-end tests #
+make end_to_end_tests
+
+# run code linter (static code analysis) #
+make linter
+
+# run type-checks (static code type-checking) #
+make type_checks
+
+# verify python code examples in function/method docstrings #
+make check_docstring_example_code
+
+# automatically format all scripts (uses Ruff) #
+make auto_format_full_codebase
+
+# locally host the project documentation #
+make view_docs_local
+
+# locally build the documentation and push it to GitHub pages #
+make deploy_docs_to_github
+```
+
 The project code consists of a toy implementation of the original [Diffie-Hellman-Merkle Key Exchange](https://en.wikipedia.org/wiki/Diffie–Hellman_key_exchange) algorithm (which is used to securely communicate a secret key across an insecure public communication channel).  
 
-This **CI** pipeline works as follows (joe TODO: references in text below are stale after last refactor):
+This [CI](https://en.wikipedia.org/wiki/Continuous_integration) pipeline works as follows (joe TODO: references in text below are stale after last refactor):
 
 * The pipeline is set up as a single GitHub action (I've labelled the action "**ci**" on the GitHub repo).
 

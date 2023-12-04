@@ -66,6 +66,8 @@ This tutorial assumes that you have a rudimentary understanding of the version c
 
 ## What You Will Learn in this Tutorial
 
+
+
 ## A Quick Intro to the Core Tools
 
 ## A Quick Intro to the Core Tools: Git and GitHub (Version Control)
