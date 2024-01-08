@@ -26,12 +26,12 @@ flowchart TD;
 
 ```mermaid
 flowchart TD;
-    A["Production codebase  (git main branch)"] -. "developer makes a local copy  of the production code (git pull)" .-> B["⚙  Local copy of production codebase  (git feature branch)"]
-    B -. "developer writes new code" .-> C["⚙  Local copy of production codebase with new code (git feature branch)"]
-    C -. "developer attempts to merge new code into production codebase (git push origin main) (github pull request)" .-> D{"⚒ System checks for merge conflicts and runs all tests (github actions)"}
-    D -- "all tests pass" --> E{⚒ System accepts  merge}
-    E -. "code merged into production codebase " .-> A
-    D -- "1 or more tests fail" --> F{⚒ System rejects  merge}
+    A["Production codebase  (git main branch)"] -. "developer makes a local copy of the production code (git pull)" .-> B["Local copy of production codebase (git feature branch)"]
+    B -. "developer writes new code" .-> C["Local copy of production codebase with new code (git feature branch)"]
+    C -. "developer attempts to merge new code into production codebase (git push origin main) (github pull request)" .-> D{"System checks for merge conflicts and runs all tests (github actions)"}
+    D -- "all tests pass" --> E{System accepts merge}
+    E -. "code merged into production codebase" .-> A
+    D -- "1 or more tests fail" --> F{System rejects  merge}
     F -. "developer adapts their code to make the tests pass" .-> C
 ```
 
