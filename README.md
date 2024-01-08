@@ -15,12 +15,12 @@ This flowchart illustrates the [CI](https://en.wikipedia.org/wiki/Continuous_int
 title: Continuous Integration Pipeline
 ---
 flowchart TD;
-    A["⚙ <br>Production codebase <br>(git main branch)"] -. "developer makes a local copy<br> of the production code<br>(git pull)" .-> B["⚙ <br>Local copy of production codebase <br>(git feature branch)"]
-    B -. "developer writes new code" .-> C["⚙ <br>Local copy of production codebase<br>with new code<br>(git feature branch)"]
-    C -. "developer attempts to merge new<br>code into production codebase<br>(git push origin main)<br>(github pull request)" .-> D{"⚒<br>System checks for<br>merge conflicts and<br>runs all tests<br>(github actions)"}
-    D -- "all tests pass" --> E{⚒<br>System accepts <br>merge}
+    A["Production codebase <br>(git main branch)"] -. "developer makes a local copy<br> of the production code<br>(git pull)" .-> B["Local copy of production codebase <br>(git feature branch)"]
+    B -. "developer writes new code" .-> C["Local copy of production codebase<br>with new code<br>(git feature branch)"]
+    C -. "developer attempts to merge new<br>code into production codebase<br>(git push origin main)<br>(github pull request)" .-> D{"System checks for<br>merge conflicts and<br>runs all tests<br>(github actions)"}
+    D -- "all tests pass" --> E{System accepts <br>merge}
     E -. "code merged into<br>production codebase " .-> A
-    D -- "1 or more tests fail" --> F{⚒<br>System rejects <br>merge}
+    D -- "1 or more tests fail" --> F{System rejects <br>merge}
     F -. "developer adapts their code<br>to make the tests pass" .-> C
 ```
 
