@@ -1,11 +1,75 @@
 # python-github-ci-pipeline
-An example [Continuous Integration (**CI**)](https://en.wikipedia.org/wiki/Continuous_integration) pipeline for a python project using GitHub actions and GitHub branch protection rules.
+
+This [GitHub](https://github.com) repo holds an example [Continuous Integration (CI)](https://en.wikipedia.org/wiki/Continuous_integration) pipeline for a python project, built using [GitHub actions](https://github.com/features/actions) and [GitHub branch protection rules](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches). A tutorial blog post explaining this repo in detail can be found [here](./blog_post/tutorial.md).
+
+The python project code in this repo is an implementation of the original 
+[Diffie-Hellman-Merkle Key Exchange](https://en.wikipedia.org/wiki/Diffie-Hellman_key_exchange#Cryptographic_explanation) 
+algorithm. You can see the project documentation [here](https://J-sephB-lt-n.github.io/python-github-ci-pipeline/) (this documentation is automatically built by the [CI](https://en.wikipedia.org/wiki/Continuous_integration) pipeline when a pull request to main branch is accepted).
 
 << **this repo is still under construction** >>
 
+This flowchart illustrates the [CI](https://en.wikipedia.org/wiki/Continuous_integration) pipeline implemented in this git repo:
+
+```mermaid
+---
+title: Continuous Integration Pipeline
+---
+flowchart TD;
+    A["⚙ <br>Production codebase <br>(git main branch)"] -. "developer makes a local copy<br> of the production code<br>(git pull)" .-> B["⚙ <br>Local copy of production codebase <br>(git feature branch)"]
+    B -. "developer writes new code" .-> C["⚙ <br>Local copy of production codebase<br>with new code<br>(git feature branch)"]
+    C -. "developer attempts to merge new<br>code into production codebase<br>(git push origin main)<br>(github pull request)" .-> D{"⚒<br>System checks for<br>merge conflicts and<br>runs all tests<br>(github actions)"}
+    D -- "all tests pass" --> E{⚒<br>System accepts <br>merge}
+    E -. "code merged into<br>production codebase " .-> A
+    D -- "1 or more tests fail" --> F{⚒<br>System rejects <br>merge}
+    F -. "developer adapts their code<br>to make the tests pass" .-> C
+```
+
+Parts of the [CI](https://en.wikipedia.org/wiki/Continuous_integration) pipeline can be run locally using the [Makefile](./Makefile) in terminal using the following commands: 
+
+```bash
+# install all of the python packages required in order to contribute to this python project #
+make install_dev_dependencies
+
+# install all of the python packages required in order to use this python project (i.e. as an end-user) #
+make install_prod_dependencies
+
+# run all tests (unit, integration, end-to-end, test coverage, linter, type-checking, docstring examples) #
+make run_all_tests
+
+# quantify test coverage #
+make test_coverage
+
+# run all unit tests # 
+make unit_tests
+
+# run all integration tests #
+make integration_tests
+
+# run all end-to-end tests #
+make end_to_end_tests
+
+# run code linter (static code analysis) #
+make linter
+
+# run type-checks (static code type-checking) #
+make type_checks
+
+# verify python code examples in function/method docstrings #
+make check_docstring_example_code
+
+# automatically format all scripts (uses Ruff) #
+make auto_format_full_codebase
+
+# locally host the project documentation #
+make view_docs_local
+
+# locally build the documentation and push it to GitHub pages #
+make deploy_docs_to_github
+```
+
 The project code consists of a toy implementation of the original [Diffie-Hellman-Merkle Key Exchange](https://en.wikipedia.org/wiki/Diffie–Hellman_key_exchange) algorithm (which is used to securely communicate a secret key across an insecure public communication channel).  
 
-This **CI** pipeline works as follows (joe TODO: references in text below are stale after last refactor):
+This [CI](https://en.wikipedia.org/wiki/Continuous_integration) pipeline works as follows (joe TODO: references in text below are stale after last refactor):
 
 * The pipeline is set up as a single GitHub action (I've labelled the action "**ci**" on the GitHub repo).
 
@@ -44,8 +108,6 @@ Implemented so far:
 # Setup Notes
 
 * In order for GitHub actions to be able to write to the repository (e.g. to automatically format code, and then commit and push the changed code), you need to enable "Read and write permissions" for GitHub actions in the GitHub website UI (this is under *Settings>>Actions>>General*).
-
-
 
 # Other Notes
 
