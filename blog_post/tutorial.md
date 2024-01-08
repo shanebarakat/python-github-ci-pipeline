@@ -3,7 +3,7 @@
 
 !!This tutorial is still under heavy construction!!
 
-A working version of the CI pipeline described in this tutorial is available in the public github repository https://github.com/J-sephB-lt-n/python-github-ci-pipeline - you can fork this repo and try it out for yourself. Everything will work even if you are using a free GitHub account, as long as your fork is a public repository. 
+A working version of the CI pipeline described in this tutorial is available in the public github repository https://github.com/J-sephB-lt-n/python-github-ci-pipeline (you can fork this repo and try it out for yourself). Everything will work even if you are using a free GitHub account, as long as your fork is a public repository. 
 
 ## Contents 
 
@@ -60,13 +60,26 @@ This tutorial assumes that you have a rudimentary understanding of the version c
 
 * git push
 
-* pull request
-
 * git merge
 
+* pull request
+
 ## What You Will Learn in this Tutorial
+This flowchart illustrates the core behaviour of the CI pipeline which we will be implementing (using [github actions](https://docs.github.com/en/actions)) in this tutorial:
 
-
+```mermaid
+---
+title: Continuous Integration Pipeline
+---
+flowchart TD;
+    A["⚙ <br>Production codebase <br>(git main branch)"] -. "developer makes a local copy<br> of the production code<br>(git pull)" .-> B["⚙ <br>Local copy of production codebase <br>(git feature branch)"]
+    B -. "developer writes new code" .-> C["⚙ <br>Local copy of production codebase<br>with new code<br>(git feature branch)"]
+    C -. "developer attempts to merge new<br>code into production codebase<br>(git push origin main)<br>(github pull request)" .-> D{"⚒<br>System checks for<br>merge conflicts and<br>runs all tests<br>(github actions)"}
+    D -- "all tests pass" --> E{⚒<br>System accepts <br>merge}
+    E -. "code merged into<br>production codebase " .-> A
+    D -- "1 or more tests fail" --> F{⚒<br>System rejects <br>merge}
+    F -. "developer adapts their code<br>to make the tests pass" .-> C
+```
 
 ## A Quick Intro to the Core Tools
 

@@ -4,9 +4,25 @@ This [GitHub](https://github.com) repo holds an example [Continuous Integration 
 
 The python project code in this repo is an implementation of the original 
 [Diffie-Hellman-Merkle Key Exchange](https://en.wikipedia.org/wiki/Diffie-Hellman_key_exchange#Cryptographic_explanation) 
-algorithm. You can see the project documentation [here](https://J-sephB-lt-n.github.io/python-github-ci-pipeline/) (this documentation is automatically built by the [CI](https://en.wikipedia.org/wiki/Continuous_integration) pipeline).
+algorithm. You can see the project documentation [here](https://J-sephB-lt-n.github.io/python-github-ci-pipeline/) (this documentation is automatically built by the [CI](https://en.wikipedia.org/wiki/Continuous_integration) pipeline when a pull request to main branch is accepted).
 
 << **this repo is still under construction** >>
+
+This flowchart illustrates the [CI](https://en.wikipedia.org/wiki/Continuous_integration) pipeline implemented in this git repo:
+
+```mermaid
+---
+title: Continuous Integration Pipeline
+---
+flowchart TD;
+    A["⚙ <br>Production codebase <br>(git main branch)"] -. "developer makes a local copy<br> of the production code<br>(git pull)" .-> B["⚙ <br>Local copy of production codebase <br>(git feature branch)"]
+    B -. "developer writes new code" .-> C["⚙ <br>Local copy of production codebase<br>with new code<br>(git feature branch)"]
+    C -. "developer attempts to merge new<br>code into production codebase<br>(git push origin main)<br>(github pull request)" .-> D{"⚒<br>System checks for<br>merge conflicts and<br>runs all tests<br>(github actions)"}
+    D -- "all tests pass" --> E{⚒<br>System accepts <br>merge}
+    E -. "code merged into<br>production codebase " .-> A
+    D -- "1 or more tests fail" --> F{⚒<br>System rejects <br>merge}
+    F -. "developer adapts their code<br>to make the tests pass" .-> C
+```
 
 Parts of the [CI](https://en.wikipedia.org/wiki/Continuous_integration) pipeline can be run locally using the [Makefile](./Makefile) in terminal using the following commands: 
 
@@ -92,8 +108,6 @@ Implemented so far:
 # Setup Notes
 
 * In order for GitHub actions to be able to write to the repository (e.g. to automatically format code, and then commit and push the changed code), you need to enable "Read and write permissions" for GitHub actions in the GitHub website UI (this is under *Settings>>Actions>>General*).
-
-
 
 # Other Notes
 
