@@ -15,24 +15,13 @@ This flowchart illustrates the [CI](https://en.wikipedia.org/wiki/Continuous_int
 title: Continuous Integration Pipeline
 ---
 flowchart TD;
-    A["⚙  Production codebase  (git main branch)"] -. "developer makes a local copy  of the production code (git pull)" .-> B["⚙  Local copy of production codebase  (git feature branch)"]
-    B -. "developer writes new code" .-> C["⚙  Local copy of production codebase with new code (git feature branch)"]
-    C -. "developer attempts to merge new code into production codebase (git push origin main) (github pull request)" .-> D{"⚒ System checks for merge conflicts and runs all tests (github actions)"}
-    D -- "all tests pass" --> E{⚒ System accepts  merge}
-    E -. "code merged into production codebase " .-> A
-    D -- "1 or more tests fail" --> F{⚒ System rejects  merge}
-    F -. "developer adapts their code to make the tests pass" .-> C
-```
-
-```mermaid
-flowchart TD;
-    A["Production codebase  (git main branch)"] -. "developer makes a local copy of the production code (git pull)" .-> B["Local copy of production codebase (git feature branch)"]
-    B -. "developer writes new code" .-> C["Local copy of production codebase with new code (git feature branch)"]
-    C -. "developer attempts to merge new code into production codebase (git push origin main) (github pull request)" .-> D{"System checks for merge conflicts and runs all tests (github actions)"}
-    D -- "all tests pass" --> E{System accepts merge}
-    E -. "code merged into production codebase" .-> A
-    D -- "1 or more tests fail" --> F{System rejects  merge}
-    F -. "developer adapts their code to make the tests pass" .-> C
+    A["Production codebase <br>(git main branch)"] -. "developer makes a local copy<br> of the production code<br>(git pull)" .-> B["Local copy of production codebase <br>(git feature branch)"]
+    B -. "developer writes new code" .-> C["Local copy of production codebase<br>with new code<br>(git feature branch)"]
+    C -. "developer attempts to merge new<br>code into production codebase<br>(git push origin main)<br>(github pull request)" .-> D{"System checks for<br>merge conflicts and<br>runs all tests<br>(github actions)"}
+    D -- "all tests pass" --> E{System accepts <br>merge}
+    E -. "code merged into<br>production codebase " .-> A
+    D -- "1 or more tests fail" --> F{System rejects <br>merge}
+    F -. "developer adapts their code<br>to make the tests pass" .-> C
 ```
 
 Parts of the [CI](https://en.wikipedia.org/wiki/Continuous_integration) pipeline can be run locally using the [Makefile](./Makefile) in terminal using the following commands: 
@@ -94,17 +83,17 @@ Implemented so far:
 
 | Task                        | Location                | How to Run This Task
 |-----------------------------|-------------------------|-----------------------------
-| Auto-format all code scripts (uses [Ruff](https://github.com/astral-sh/ruff)) | local github repo | run in terminal (from project root folder):  <code>make auto_format_code</code>
+| Auto-format all code scripts (uses [Ruff](https://github.com/astral-sh/ruff)) | local github repo | run in terminal (from project root folder):<br> <code>make auto_format_code</code>
 | Auto-format all code scripts (uses [Ruff](https://github.com/astral-sh/ruff)) | remote github repo      | task runs automatically (using github action) whenever code is pushed to remote main branch
-| Install development dependencies (required to run tests, build documentation etc.) | local github repo | run in terminal (from project root folder):  <code>make install_dev_dependencies</code>
-| Install production dependencies (required to use the package) | local github repo | run in terminal (from project root folder):  <code>make install_prod_dependencies</code>
-| Measure test coverage (uses [pytest-cov](https://github.com/pytest-dev/pytest-cov)) | local github repo | run in terminal (from project root folder):  <code>make test_coverage</code>
-| Run all tests (unit, integration, end-to-end, test coverage, linter, type-checking) | local github repo | run in terminal (from project root folder):  <code>make run_all_tests</code>
-| Run all unit tests | local github repo | run in terminal (from project root folder):  <code>make unit_tests</code>
-| Run all integration tests | local github repo | run in terminal (from project root folder):  <code>make integration_tests</code>
-| Run all end-to-end tests | local github repo | run in terminal (from project root folder):  <code>make end_to_end_tests</code>
-| Run code linting on core scripts in [/diffie_hellman_merkle/](./diffie_hellman_merkle/) folder (uses [Pylint](https://github.com/pylint-dev/pylint)) | local github repo | run in terminal (from project root folder):  <code>make linter</code>
-| Run static type checking on core scripts in [/diffie_hellman_merkle/](./diffie_hellman_merkle/) folder (uses [my[py]](https://github.com/python/mypy)) | local github repo | run in terminal (from project root folder):  <code>make type_checks</code>
+| Install development dependencies (required to run tests, build documentation etc.) | local github repo | run in terminal (from project root folder):<br> <code>make install_dev_dependencies</code>
+| Install production dependencies (required to use the package) | local github repo | run in terminal (from project root folder):<br> <code>make install_prod_dependencies</code>
+| Measure test coverage (uses [pytest-cov](https://github.com/pytest-dev/pytest-cov)) | local github repo | run in terminal (from project root folder):<br> <code>make test_coverage</code>
+| Run all tests (unit, integration, end-to-end, test coverage, linter, type-checking) | local github repo | run in terminal (from project root folder):<br> <code>make run_all_tests</code>
+| Run all unit tests | local github repo | run in terminal (from project root folder):<br> <code>make unit_tests</code>
+| Run all integration tests | local github repo | run in terminal (from project root folder):<br> <code>make integration_tests</code>
+| Run all end-to-end tests | local github repo | run in terminal (from project root folder):<br> <code>make end_to_end_tests</code>
+| Run code linting on core scripts in [/diffie_hellman_merkle/](./diffie_hellman_merkle/) folder (uses [Pylint](https://github.com/pylint-dev/pylint)) | local github repo | run in terminal (from project root folder):<br> <code>make linter</code>
+| Run static type checking on core scripts in [/diffie_hellman_merkle/](./diffie_hellman_merkle/) folder (uses [my[py]](https://github.com/python/mypy)) | local github repo | run in terminal (from project root folder):<br> <code>make type_checks</code>
 
 # GitHub Actions and Branch Protection Rules
 
