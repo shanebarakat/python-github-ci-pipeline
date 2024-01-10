@@ -1,5 +1,5 @@
 
-# Tutorial: Continuous Integration Pipeline using GitHub
+# Tutorial: Build a Continuous Integration Pipeline using GitHub Actions
 
 !!This tutorial is still under heavy construction!!
 
@@ -15,19 +15,6 @@ A working version of the CI pipeline described in this tutorial is available in 
 
 * [A Quick Intro to the Core Tools](#a-quick-intro-to-the-core-tools)
 
-    - [Git and GitHub (Version Control)](#git-and-github-version-control)
-
-    - [GitHub Actions and Branch Protection Rules](#github-actions-and-branch-protection-rules)
-
-    - [PyTest](#pytest)
-
-    - [MkDocs and MkDocStrings (Documentation)](#mkdocs-and-mkdocstrings-documentation)
-
-    - [Ruff (Code Formatter)](#ruff-code-formatter)
-
-    - [MyPy (Type Checking)](#mypy-type-checking)
-
-    - [PyLint (Code Analyser)](#pylint-code-analyser)
 
 * [CI Pipeline in GitHub](#ci-pipeline-in-github)
 
@@ -64,7 +51,11 @@ This tutorial assumes that you have a rudimentary understanding of the version c
 
 * pull request
 
+If you've never 
+
 ## What You Will Learn in this Tutorial
+In this tutorial, we'll be building a CI pipeline in  
+
 This flowchart illustrates the core behaviour of the CI pipeline which we will be implementing (using [github actions](https://docs.github.com/en/actions)) in this tutorial:
 
 ```mermaid
@@ -83,19 +74,18 @@ flowchart TD;
 
 ## A Quick Intro to the Core Tools
 
-## A Quick Intro to the Core Tools: Git and GitHub (Version Control)
+Although not the focus of this tutorial, here is a short description of all of the tools you'll be exposed to in this tutorial: 
 
-## A Quick Intro to the Core Tools: GitHub Actions and Branch Protection Rules
-
-## A Quick Intro to the Core Tools: PyTest
-
-## A Quick Intro to the Core Tools: MkDocs and MkDocStrings (Documentation)
-
-## A Quick Intro to the Core Tools: Ruff (Code Formatter)
-
-## A Quick Intro to the Core Tools: MyPy (Type Checking)
-
-## A Quick Intro to the Core Tools: PyLint (Code Analyser)
+| Tool                         | Description
+|------------------------------|-------------------
+| [Git](https://git-scm.com/)  | The most widely used version control system for managing codebases. [Git](https://git-scm.com/) keeps a full history of every change made to the code, and makes it easy to explore this history. [Git](https://git-scm.com/) is also very good at merging the work of multiple authors on the same file (and elegantly resolving their conflicts).    
+| [GitHub](https://github.com/)|
+| [GitHub Actions and Branch Protection Rules](#github-actions-and-branch-protection-rules) | 
+| [PyTest](#pytest) | 
+| [MkDocs and MkDocStrings (Documentation)](#mkdocs-and-mkdocstrings-documentation) | 
+| [Ruff (Code Formatter)](#ruff-code-formatter) | 
+| [MyPy (Type Checking)](#mypy-type-checking) | 
+| [PyLint (Code Analyser)](#pylint-code-analyser) | 
 
 ## CI Pipeline in GitHub
 
