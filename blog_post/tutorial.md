@@ -1,5 +1,5 @@
 
-# Tutorial: Build a Continuous Integration Pipeline using GitHub Actions
+# Tutorial: How to Build a Continuous Integration Pipeline using GitHub Actions
 
 !!This tutorial is still under heavy construction!!
 
@@ -26,35 +26,43 @@ A working version of the CI pipeline described in this tutorial is available in 
 
 ## What is CI/CD and Why Would We Want It?
 
-[CI/CD](https://en.wikipedia.org/wiki/CI/CD) stands for [Continuous Integration / Continuous Delivery](https://en.wikipedia.org/wiki/CI/CD). It is a [Dev-Ops](https://en.wikipedia.org/wiki/DevOps) software development style which is designed to make the process of releasing software updates as fast and seamless as possible. 
+[CI/CD](https://en.wikipedia.org/wiki/CI/CD) stands for [Continuous Integration / Continuous Delivery](https://en.wikipedia.org/wiki/CI/CD). It is a [Dev-Ops](https://en.wikipedia.org/wiki/DevOps) software development style which is designed to make the process of releasing software updates as fast and as seamless as possible. 
 
 It consists of two distinct parts:
 
 | Software Development Practice | Basic Idea
 |-------------------------------|--------------------------------------------------------------------------------------------------------------------------------
-| <a id=ci>Continuous Integration</a> (CI)   | Developers working on the same project merge their changes into the shared code base very frequently (typically at least once per day) <br>i.e. code contributions by team members are integrated into the working code base continuously.
+| <a id=ci>Continuous Integration</a> (CI)   | Developers working on the same project merge their new code into the central shared code base very frequently (typically at least once per day) <br>i.e. code contributions by team members are integrated into the production code base continuously.
 | <a id=cd>Continuous Delivery</a> (CD)      | Production software builds are released very frequently <br> i.e. user-facing software updates are released almost continuously.
 
 In order to release stable and trustworthy software, a lot of quality and stress testing is required, and both continuous [integation](#c1) and [delivery](#cd) achieve this by automating all of these tests.
 
-This tutorial demonstrates how an automated [Continuous Integration](https://en.wikipedia.org/wiki/Continuous_integration) process can be set up in [GitHub](https://github.com). Again, you can see the working code [here](https://github.com/J-sephB-lt-n/python-github-ci-pipeline).
+This tutorial demonstrates how an automated [Continuous Integration](https://en.wikipedia.org/wiki/Continuous_integration) process can be set up in [GitHub](https://github.com) using [GitHub Actions](https://docs.github.com/en/actions). Again, you can see the working code [here](https://github.com/J-sephB-lt-n/python-github-ci-pipeline).
 
 ## Prerequisite Knowledge
 
 This tutorial assumes that you have a rudimentary understanding of the version control system [git](https://git-scm.com), specifically these concepts:
 
+* local and remote repositories 
+
+* development branches 
+
+* git merge
+
 * git pull
 
 * git push
 
-* git merge
-
 * pull request
 
-If you've never 
+If you've never heard any of these terms before, I would recommend reading an introductory article on git ([this one](https://dev.to/ionos/an-introduction-to-git-the-basics-every-beginning-developer-should-know-o62) is not bad).  
 
 ## What You Will Learn in this Tutorial
-In this tutorial, we'll be building a CI pipeline in  
+In this tutorial, we're building a CI pipeline using [GitHub Actions](https://docs.github.com/en/actions). The reasons that I chose to use the enterprise platform [GitHub](https://github.com/) for this are:
+
+1. [GitHub](https://github.com/) has a generous free tier (i.e. you can do a lot without having to pay anything)
+
+2. All of the biggest python libraries host their source code on [GitHub](https://github.com/). Examples are [Requests](https://github.com/psf/requests), [Flask](https://github.com/pallets/flask/), [FastAPI](https://github.com/tiangolo/fastapi), [mypy](https://github.com/python/mypy), [Numpy](https://github.com/numpy/numpy), [Pandas](https://github.com/pandas-dev/pandas), [PyTorch](https://github.com/pytorch/pytorch), [TensorFlow](https://github.com/tensorflow/tensorflow), [SciKit-Learn](https://github.com/scikit-learn/scikit-learn), [matplotlib](https://github.com/matplotlib/matplotlib), [SQLAlchemy](https://github.com/sqlalchemy/sqlalchemy) etc. etc. etc. (even [python itself](https://github.com/python/cpython))
 
 This flowchart illustrates the core behaviour of the CI pipeline which we will be implementing (using [github actions](https://docs.github.com/en/actions)) in this tutorial:
 
