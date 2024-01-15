@@ -99,6 +99,33 @@ Although not the focus of this tutorial, here is a short description of all of t
 
 ### CI Pipeline in GitHub: How it Looks
 
+```bash
+~$ git checkout -b "broken_doctest_example"
+Switched to a new branch 'broken_doctest_example'
+```
+
+Now, I edit the code example in the docstring of the function module_exp() in diffie_hellman_merkle/helpers.py and make it incorrect.  
+
+```bash
+~$ git add .
+~$ git status
+On branch broken_doctest_example
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   diffie_hellman_merkle/helpers.py
+~$ git push --set-upstream origin broken_doctest_example
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+remote: 
+remote: Create a pull request for 'broken_doctest_example' on GitHub by visiting:
+remote:      https://github.com/J-sephB-lt-n/python-github-ci-pipeline/pull/new/broken_doctest_example
+remote: 
+To https://github.com/J-sephB-lt-n/python-github-ci-pipeline.git
+ * [new branch]      broken_doctest_example -> broken_doctest_example
+branch 'broken_doctest_example' set up to track 'origin/broken_doctest_example'.
+```
+
+
+
 ### CI Pipeline in GitHub: How to Build It
 
 ## Next Steps

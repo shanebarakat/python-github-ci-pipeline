@@ -15,7 +15,7 @@ def modulo_exp(base: int, exp: int, mod: int) -> int:
 
     Examples:
         >>> modulo_exp(base=6, exp=9, mod=420)
-        216
+        215
 
     Args:
         base (int): The base number to be exponentiated
