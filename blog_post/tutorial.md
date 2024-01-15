@@ -122,6 +122,9 @@ remote:
 To https://github.com/J-sephB-lt-n/python-github-ci-pipeline.git
  * [new branch]      broken_doctest_example -> broken_doctest_example
 branch 'broken_doctest_example' set up to track 'origin/broken_doctest_example'.
+~$ git commit -m "refactor(helpers.py): broke doctest for illustration"
+[broken_doctest_example 355ce7c] refactor(helpers.py): broke doctest for illustration
+ 2 files changed, 28 insertions(+), 1 deletion(-)
 ```
 
 
