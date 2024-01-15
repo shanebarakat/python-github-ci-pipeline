@@ -15,7 +15,6 @@ A working version of the CI pipeline described in this tutorial is available in 
 
 * [A Quick Intro to the Core Tools](#a-quick-intro-to-the-core-tools)
 
-
 * [CI Pipeline in GitHub](#ci-pipeline-in-github)
 
     - [How it Looks](#ci-pipeline-in-github-how-it-looks)
@@ -45,7 +44,7 @@ This tutorial assumes that you have a rudimentary understanding of the version c
 
 * local and remote repositories 
 
-* development branches 
+* branches 
 
 * git merge
 
@@ -55,24 +54,25 @@ This tutorial assumes that you have a rudimentary understanding of the version c
 
 * pull request
 
-If you've never heard any of these terms before, I would recommend reading an introductory article on git ([this one](https://dev.to/ionos/an-introduction-to-git-the-basics-every-beginning-developer-should-know-o62) is not bad).  
+If you've never heard any of these terms before, I would recommend reading an introductory article on [git](https://git-scm.com) ([this one](https://dev.to/ionos/an-introduction-to-git-the-basics-every-beginning-developer-should-know-o62) is not bad).  
+
+Primarily, [git](https://git-scm.com) keeps a history of all changes made to a shared codebase, and also helps to manage conflicts when multiple people make edits to the same piece of code at the same time. 
 
 ## What You Will Learn in this Tutorial
 In this tutorial, we're building a CI pipeline using [GitHub Actions](https://docs.github.com/en/actions). The reasons that I chose to use the enterprise platform [GitHub](https://github.com/) for this are:
 
 1. [GitHub](https://github.com/) has a generous free tier (i.e. you can do a lot without having to pay anything)
 
-2. All of the biggest python libraries host their source code on [GitHub](https://github.com/). Examples are [Requests](https://github.com/psf/requests), [Flask](https://github.com/pallets/flask/), [FastAPI](https://github.com/tiangolo/fastapi), [mypy](https://github.com/python/mypy), [Numpy](https://github.com/numpy/numpy), [Pandas](https://github.com/pandas-dev/pandas), [PyTorch](https://github.com/pytorch/pytorch), [TensorFlow](https://github.com/tensorflow/tensorflow), [SciKit-Learn](https://github.com/scikit-learn/scikit-learn), [matplotlib](https://github.com/matplotlib/matplotlib), [SQLAlchemy](https://github.com/sqlalchemy/sqlalchemy) etc. etc. etc. (even [python itself](https://github.com/python/cpython))
+2. All of the biggest python libraries host their source code on [GitHub](https://github.com/). Examples are [Requests](https://github.com/psf/requests), [Flask](https://github.com/pallets/flask/), [FastAPI](https://github.com/tiangolo/fastapi), [mypy](https://github.com/python/mypy), [Numpy](https://github.com/numpy/numpy), [Pandas](https://github.com/pandas-dev/pandas), [PyTorch](https://github.com/pytorch/pytorch), [TensorFlow](https://github.com/tensorflow/tensorflow), [SciKit-Learn](https://github.com/scikit-learn/scikit-learn), [matplotlib](https://github.com/matplotlib/matplotlib), [SQLAlchemy](https://github.com/sqlalchemy/sqlalchemy) etc. etc. etc. (even [python itself](https://github.com/python/cpython)).
 
-This flowchart illustrates the core behaviour of the CI pipeline which we will be implementing (using [github actions](https://docs.github.com/en/actions)) in this tutorial:
+This flowchart illustrates the core behaviour of the CI pipeline which we're going to build (I'm ignoring the added complexity of local vs. remote git repos for now):
 
 ```mermaid
 ---
-title: Continuous Integration Pipeline
+title: Continuous Integration Pipeline 
 ---
 flowchart TD;
-    A["Production codebase <br>(git main branch)"] -. "developer makes a local copy<br> of the production code<br>(git pull)" .-> B["Local copy of production codebase <br>(git feature branch)"]
-    B -. "developer writes new code" .-> C["Local copy of production codebase<br>with new code<br>(git feature branch)"]
+    A["Production codebase <br>(git main branch)"] -. "developer writes some new <br>new code on a feature branch<br>(git checkout feature_branch)" .-> C["Local copy of production codebase<br>with new code<br>(git feature branch)"]
     C -. "developer attempts to merge new<br>code into production codebase<br>(git push origin main)<br>(github pull request)" .-> D{"System checks for<br>merge conflicts and<br>runs all tests<br>(github actions)"}
     D -- "all tests pass" --> E{System accepts <br>merge}
     E -. "code merged into<br>production codebase " .-> A
