@@ -100,11 +100,65 @@ Although not the focus of this tutorial, here is a short description of all of t
 ### CI Pipeline in GitHub: How it Looks
 
 ```bash
-~$ git checkout -b "broken_doctest_example"
-Switched to a new branch 'broken_doctest_example'
+~$ git checkout -b "example_broken_doctest"
+Switched to a new branch 'example_broken_doctest'
+```
+```bash
+~$ git status
+On branch example_broken_doctest
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   diffie_hellman_merkle/helpers.py
+~$ git add .
+~$ git status
+On branch example_broken_doctest
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   diffie_hellman_merkle/helpers.py
+```
+```bash
+~$ git commit -m "docs(helpers.py): broke doctest on purpose"
+[example_broken_doctest 6662238] docs(helpers.py): broke doctest on purpose
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+```
+```bash
+~$ git push
+fatal: The current branch example_broken_doctest has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin example_broken_doctest
+
+To have this happen automatically for branches without a tracking
+upstream, see 'push.autoSetupRemote' in 'git help config'.
+```
+```bash
+~$ git push --set-upstream origin example_broken_doctest
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 438 bytes | 438.00 KiB/s, done.
+Total 4 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+remote: 
+remote: Create a pull request for 'example_broken_doctest' on GitHub by visiting:
+remote:      https://github.com/J-sephB-lt-n/python-github-ci-pipeline/pull/new/example_broken_doctest
+remote: 
+To https://github.com/J-sephB-lt-n/python-github-ci-pipeline.git
+ * [new branch]      example_broken_doctest -> example_broken_doctest
+branch 'example_broken_doctest' set up to track 'origin/example_broken_doctest'.
 ```
 
-Now, I edit the code example in the docstring of the function module_exp() in diffie_hellman_merkle/helpers.py and make it incorrect.  
+![](./media/example_flow/1.png)
+![](./media/example_flow/2.png)
+![](./media/example_flow/3.png)
+![](./media/example_flow/4.png)
+![](./media/example_flow/5.png)
+![](./media/example_flow/6.png)
+![](./media/example_flow/7.png)
+![](./media/example_flow/8.png)
+
 
 ### CI Pipeline in GitHub: How to Build It
 
