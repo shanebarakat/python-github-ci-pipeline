@@ -99,6 +99,13 @@ Although not the focus of this tutorial, here is a short description of all of t
 
 ### CI Pipeline in GitHub: How it Looks
 
+```bash
+~$ git checkout -b "broken_doctest_example"
+Switched to a new branch 'broken_doctest_example'
+```
+
+Now, I edit the code example in the docstring of the function module_exp() in diffie_hellman_merkle/helpers.py and make it incorrect.  
+
 ### CI Pipeline in GitHub: How to Build It
 
 ## Next Steps
