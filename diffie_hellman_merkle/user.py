@@ -1,3 +1,4 @@
+
 """# User-facing functions and classes"""
 
 from diffie_hellman_merkle import helpers
@@ -22,15 +23,22 @@ class DiffieHellmanMerkle:
         shared_modulus: int,
         shared_base: int,
         personal_secret: int,
-    ):
-        if not helpers.is_prime(shared_modulus):
-            raise ValueError(
-                f"shared_modulus must be a prime number ({shared_modulus} is not prime)"
-            )
-        if not helpers.g_is_primitive_root_modulo_p(g=shared_base, p=shared_modulus):
-            raise ValueError(
-                f"`shared_base` must be a primitive root modulo `shared_modulus`. Received shared_base={shared_base}, shared_modulus={shared_modulus}"
-            )
+    ) -> None:
+        """Initializes a DiffieHellmanMerkle object with public and private parameters.
+
+        This constructor performs validation of the shared modulus and base,
+        and calculates the initial public value to share.
+
+        Args:
+            shared_modulus (int): A large prime number, publicly known. This is 'p' in DH.
+            shared_base (int): A primitive root modulo `shared_modulus`, publicly known. This is 'g' in DH.
+            personal_secret (int): A secret integer, unique to this participant. This is 'a' or 'b' in DH.
+
+        Raises:
+            ValueError: If `shared_modulus` is not prime or `shared_base` is not a primitive root modulo `shared_modulus`.
+        """
+        self._validate_parameters(shared_modulus, shared_base)
+
         self.shared_modulus = shared_modulus
         self.shared_base = shared_base
         self.personal_secret = personal_secret
@@ -39,17 +47,44 @@ class DiffieHellmanMerkle:
         )
         self.shared_secret: int | None = None
 
+    def _validate_parameters(self, shared_modulus: int, shared_base: int) -> None:
+        """Validates the shared modulus and base parameters.
+
+        Ensures that the shared modulus is a prime number and the shared base
+        is a primitive root modulo the shared modulus.
+
+        Args:
+            shared_modulus (int): The modulus to validate.
+            shared_base (int): The base to validate against the modulus.
+
+        Raises:
+            ValueError: If `shared_modulus` is not prime or `shared_base` is not a primitive root modulo `shared_modulus`.
+        """
+        if not helpers.is_prime(shared_modulus):
+            raise ValueError(
+                f"shared_modulus must be a prime number ({shared_modulus} is not prime)"
+            )
+        if not helpers.g_is_primitive_root_modulo_p(g=shared_base, p=shared_modulus):
+            raise ValueError(
+                f"`shared_base` must be a primitive root modulo `shared_modulus`. Received shared_base={shared_base}, shared_modulus={shared_modulus}"
+            )
+
     def generate_shared_secret(
         self,
         received_value_to_share: int,
     ) -> None:
-        """Computes a secret shared secret key
+        """Computes the shared secret key using the received public value from the other party.
+
+        This method calculates the final shared secret (K) using the other party's
+        public value (B or A) and this instance's personal secret (a or b).
+        The result is stored in the `shared_secret` attribute.
 
         Args:
-            received_value_to_share (int): `value_to_share` received from the user that we wish to securely communicate with.
+            received_value_to_share (int): The public value received from the other participant
+                                           (e.g., B = g^b mod p, if this instance is Alice).
 
         Returns:
-            None (does not return anything)
+            None: The shared secret is stored internally in `self.shared_secret`.
         """
 
         self.shared_secret = helpers.modulo_exp(

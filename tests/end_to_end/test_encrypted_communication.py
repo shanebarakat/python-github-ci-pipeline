@@ -1,3 +1,4 @@
+
 """End-to-end tests of the whole system"""
 
 # standard lib imports #
@@ -5,6 +6,7 @@ import base64
 
 # 3rd party imports #
 import cryptography.fernet
+import pytest
 
 # project module imports #
 from diffie_hellman_merkle.user import DiffieHellmanMerkle
@@ -51,6 +53,6 @@ def test_encrypted_communication():
     decrypted_message: str = decrypted_message_bytes.decode("utf-8")
 
     # decrypted message must match original message #
-    assert (
-        decrypted_message == original_message
-    ), f'decrypted message "{decrypted_message}" does not match original message "{original_message}"'
+    if decrypted_message != original_message:
+        pytest.fail(f'decrypted message "{decrypted_message}" does not match original message "{original_message}"')
+

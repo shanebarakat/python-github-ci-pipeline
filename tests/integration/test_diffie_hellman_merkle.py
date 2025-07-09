@@ -1,3 +1,4 @@
+
 """Unit tests of the class diffie_hellman_merkle.user.DiffieHellmanMerkle"""
 
 # 3rd party imports #
@@ -15,7 +16,8 @@ def test_invalid_user_input():
             shared_base=420,
             personal_secret=69,
         )
-    assert "shared_modulus must be a prime number" in str(excinfo.value)
+    if "shared_modulus must be a prime number" not in str(excinfo.value):
+        pytest.fail("Expected 'shared_modulus must be a prime number' in exception message")
 
     with pytest.raises(ValueError) as excinfo:
         DiffieHellmanMerkle(
@@ -23,9 +25,8 @@ def test_invalid_user_input():
             shared_base=888,  # not a primitive root of `shared_modulus`
             personal_secret=420,
         )
-    assert "`shared_base` must be a primitive root modulo `shared_modulus`" in str(
-        excinfo.value
-    )
+    if "`shared_base` must be a primitive root modulo `shared_modulus`" not in str(excinfo.value):
+        pytest.fail("Expected '`shared_base` must be a primitive root modulo `shared_modulus`' in exception message")
 
 
 def test_generate_shared_secret():
@@ -44,6 +45,6 @@ def test_generate_shared_secret():
     )
     user1.generate_shared_secret(user2.value_to_share)
     user2.generate_shared_secret(user1.value_to_share)
-    assert (
-        user1.shared_secret == user2.shared_secret
-    ), "both users must generate the same shared secret"
+    if user1.shared_secret != user2.shared_secret:
+        pytest.fail("both users must generate the same shared secret")
+
