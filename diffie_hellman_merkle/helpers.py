@@ -14,7 +14,7 @@ def modulo_exp(base: int, exp: int, mod: int) -> int:
         https://en.wikipedia.org/wiki/Modular_exponentiation#Memory-efficient_method
 
     Examples:
-        >>> modulo_exp(base=6, exp=9, mod=420)
+        >>> modulo_exp(base=6, exp=9, mod=420) 
         216 
 
     Args: 
