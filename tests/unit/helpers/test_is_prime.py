@@ -2,14 +2,16 @@
 """Unit tests for the function diffie_hellman_merkle.helpers.is_prime"""
 
 import unittest
+from typing import List, Tuple
 from diffie_hellman_merkle.helpers import is_prime
 
 
-def test_is_prime():
-    """Verify output on some known cases"""
+def test_is_prime() -> None:
+    """Verify output on some known cases."""
     # Create a dummy TestCase instance to use its assertion methods
-    tester = unittest.TestCase()
-    for case in (
+    tester: unittest.TestCase = unittest.TestCase()
+
+    test_cases: List[Tuple[int, bool]] = [
         (2, True),
         (3, True),
         (4, False),
@@ -17,11 +19,12 @@ def test_is_prime():
         (4_257_452_468_388, False),
         (4_257_452_468_389, True),
         (4_257_452_468_390, False),
-    ):
-        func_output = is_prime(case[0])
-        expected_output: bool = case[1]
-        tester.assertEqual(
-            func_output, expected_output,
-            f"is_prime({case[0]}) returned {func_output} but expected {case[1]}"
-        )
+    ]
 
+    for number, expected_output in test_cases:
+        func_output: bool = is_prime(number)
+        tester.assertEqual(
+            func_output,
+            expected_output,
+            f"is_prime({number}) returned {func_output} but expected {expected_output}"
+        )
