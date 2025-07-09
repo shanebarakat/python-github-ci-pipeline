@@ -17,7 +17,7 @@ def modulo_exp(base: int, exp: int, mod: int) -> int:
         >>> modulo_exp(base=6, exp=9, mod=420)
         216 
 
-    Args:
+    Args: 
         base (int): The base number to be exponentiated
         exp (int): The number in the exponent
         mod (int): The modulus (divisor) in the modulo calculation
