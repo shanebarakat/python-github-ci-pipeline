@@ -1,4 +1,5 @@
 
+
 """Unit tests of the class diffie_hellman_merkle.user.DiffieHellmanMerkle"""
 
 # 3rd party imports #
@@ -9,7 +10,7 @@ from diffie_hellman_merkle.user import DiffieHellmanMerkle
 
 
 def test_invalid_user_input():
-    """Verify that invalid user input is identified and raises appropriate errors"""
+    """Verify that invalid user input is identified and raises appropriate errors."""
     with pytest.raises(ValueError) as excinfo:
         DiffieHellmanMerkle(
             shared_modulus=25,  # not a prime number
@@ -25,20 +26,26 @@ def test_invalid_user_input():
             shared_base=888,  # not a primitive root of `shared_modulus`
             personal_secret=420,
         )
-    if "`shared_base` must be a primitive root modulo `shared_modulus`" not in str(excinfo.value):
-        pytest.fail("Expected '`shared_base` must be a primitive root modulo `shared_modulus`' in exception message")
+    if (
+        "`shared_base` must be a primitive root modulo `shared_modulus`"
+        not in str(excinfo.value)
+    ):
+        pytest.fail(
+            "Expected '`shared_base` must be a primitive root modulo `shared_modulus`' "
+            "in exception message"
+        )
 
 
 def test_generate_shared_secret():
-    """Verify that a generated shared key matches for both users"""
+    """Verify that a generated shared key matches for both users."""
     public_shared_modulus: int = 543_287
     public_shared_base: int = 170
-    user1 = DiffieHellmanMerkle(
+    user1: DiffieHellmanMerkle = DiffieHellmanMerkle(
         shared_modulus=public_shared_modulus,
         shared_base=public_shared_base,
         personal_secret=1_234,
     )
-    user2 = DiffieHellmanMerkle(
+    user2: DiffieHellmanMerkle = DiffieHellmanMerkle(
         shared_modulus=public_shared_modulus,
         shared_base=public_shared_base,
         personal_secret=4_321,
