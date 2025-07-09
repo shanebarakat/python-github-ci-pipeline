@@ -39,7 +39,7 @@ def is_prime(n: int) -> bool:
     This code is taken from a stack overflow answer:
         https://stackoverflow.com/questions/1801391/how-to-create-the-most-compact-mapping-n-→-isprimen-up-to-a-limit-n
 
-    Examples:
+    Examples: 
         >>> is_prime(69)
         False
         >>> is_prime(440_817_757)
