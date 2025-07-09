@@ -1,8 +1,10 @@
+
 """# Internal (non-user-facing) helper functions and classes
 
-- `is_prime(n: int) -> bool` - Returns `True` if integer `n` is prime, otherwise `False`
-- `g_is_primitive_root_modulo_p(g: int, p: int) -> bool` - Returns `True` if `g` is primitive root modulo prime number `p`, otherwise `False`
 - `modulo_exp(base: int, exp: int, mod: int) -> int` - Memory-efficient calculation of the modulo of an exponentiated number (e.g. the value of 123^456)mod7
+- `is_prime(n: int) -> bool` - Returns `True` if integer `n` is prime, otherwise `False`
+- `_is_prime_small_checks(n: int) -> bool | None` - Internal helper for `is_prime` to perform initial quick checks.
+- `g_is_primitive_root_modulo_p(g: int, p: int) -> bool` - Returns `True` if `g` is primitive root modulo prime number `p`, otherwise `False`
 """
 
 
@@ -18,12 +20,12 @@ def modulo_exp(base: int, exp: int, mod: int) -> int:
         216 
 
     Args: 
-        base (int): The base number to be exponentiated
-        exp (int): The number in the exponent
-        mod (int): The modulus (divisor) in the modulo calculation
+        base (int): The base number to be exponentiated.
+        exp (int): The number in the exponent.
+        mod (int): The modulus (divisor) in the modulo calculation.
 
     Returns:
-        (int): The final result of the modulo calculation
+        (int): The final result of the modulo calculation.
     """
     moving_solution: int = 1
     moving_exp: int = 0
@@ -33,32 +35,53 @@ def modulo_exp(base: int, exp: int, mod: int) -> int:
     return moving_solution
 
  
-def is_prime(n: int) -> bool:
-    """Returns `True` if integer `n` is prime, otherwise `False`
+def _is_prime_small_checks(n: int) -> bool | None:
+    """Performs initial quick checks for primality for small numbers and divisibility by 2 and 3.
 
-    This code is taken from a stack overflow answer:
-        https://stackoverflow.com/questions/1801391/how-to-create-the-most-compact-mapping-n-→-isprimen-up-to-a-limit-n
+    Args:
+        n (int): The integer to check.
+
+    Returns:
+        bool | None:
+            - True if n is definitively prime (2 or 3).
+            - False if n is definitively not prime (e.g., less than 2, even, or divisible by 3).
+            - None if further checks are required (n > 3 and not divisible by 2 or 3).
+    """
+    if n < 2:
+        return False
+    if n == 2 or n == 3:
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    return None
+
+
+def is_prime(n: int) -> bool:
+    """Returns `True` if integer `n` is prime, otherwise `False`.
+
+    This function uses an optimized trial division algorithm.
+    It first performs quick checks for small primes (2, 3) and divisibility by 2 and 3.
+    Then, it proceeds with a wheel factorization optimization for larger numbers.
 
     Examples: 
         >>> is_prime(69)
         False
         >>> is_prime(440_817_757)
         True
+        >>> is_prime(1)
+        False
+        >>> is_prime(2)
+        True
 
     Args: 
-        n (int): The integer to check (whether it is prime or not)
+        n (int): The integer to check (whether it is prime or not).
 
     Returns:
-        (bool): `True` if `n` is prime, otherwise `False`
+        (bool): `True` if `n` is prime, otherwise `False`.
     """
-    if n == 2:
-        return True
-    if n == 3:
-        return True
-    if n % 2 == 0:
-        return False
-    if n % 3 == 0:
-        return False
+    result = _is_prime_small_checks(n)
+    if result is not None:
+        return result
 
     i = 5
     w = 2
@@ -74,33 +97,30 @@ def is_prime(n: int) -> bool:
 
 
 def g_is_primitive_root_modulo_p(g: int, p: int) -> bool:
-    """Returns `True` if `g` is primitive root modulo prime number `p`, otherwise `False`
+    """Returns `True` if `g` is primitive root modulo prime number `p`, otherwise `False`.
+
+    A number `g` is a primitive root modulo a prime `p` if the smallest positive integer `k`
+    for which `g^k ≡ 1 (mod p)` is `p-1`. This is equivalent to checking that `g^m ≢ 1 (mod p)`
+    for all `m` that are proper divisors of `p-1`.
 
     Examples:
         >>> g_is_primitive_root_modulo_p(g=69, p=251)
         False
         >>> g_is_primitive_root_modulo_p(g=6, p=251)
         True
+        >>> g_is_primitive_root_modulo_p(g=2, p=7)
+        True
+        >>> g_is_primitive_root_modulo_p(g=4, p=7)
+        False
 
     Args:
-        g (int): The potential primitive root number
-        p (int): The modulo prime number
+        g (int): The potential primitive root number.
+        p (int): The modulo prime number.
 
     Returns:
-        (bool): `True` if `g` is primitive root modulo prime number `p`, otherwise `False`
+        (bool): `True` if `g` is primitive root modulo prime number `p`, otherwise `False`.
     """
     for m in range(1, p - 1):
         if (p - 1) % m == 0 and modulo_exp(base=g, exp=m, mod=p) == 1:
             return False
     return True
-
-    # alternative method: #
-    # if g <= 1 or g >= p:
-    #     return False
-    # mods_already_seen: set[int] = set()
-    # for e in range(1, p):
-    #     result: int = modulo_exp(base=g, exp=e, mod=p)
-    #     if result in mods_already_seen:
-    #         return False
-    #     mods_already_seen.add(result)
-    # return True
