@@ -45,7 +45,7 @@ def is_prime(n: int) -> bool:
         >>> is_prime(440_817_757)
         True
 
-    Args:
+    Args: 
         n (int): The integer to check (whether it is prime or not)
 
     Returns:
