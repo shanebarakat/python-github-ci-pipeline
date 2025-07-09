@@ -32,7 +32,7 @@ def modulo_exp(base: int, exp: int, mod: int) -> int:
         moving_solution = (base * moving_solution) % mod
     return moving_solution
 
-
+ 
 def is_prime(n: int) -> bool:
     """Returns `True` if integer `n` is prime, otherwise `False`
 
